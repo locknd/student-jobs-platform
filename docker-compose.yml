@@ -1,1 +1,52 @@
-# ⁡⁢⁣⁣...⁡
+version: '3.9'
+
+services:
+  db:
+    image: postgres:17
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: student_jobs
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: fastapi_backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/student_jobs
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+
+    # ⁡⁢⁣⁣Команда запуска backend-контейнера:
+    # 1. Сначала выводим сообщение, что ждём БД
+    # 2. Через цикл `while ! nc -z db 5432` ждём, пока БД не откроет порт 5432 (т.е. станет доступна)
+    # ⁡⁢⁣⁣3. Как только БД готова — запускаем скрипт `init_db.py`, который создаёт таблицы⁡
+    # ⁡⁢⁣⁣4. После успешной инициализации — запускаем сервер FastAPI через Uvicorn⁡
+    # ⁡⁢⁣⁣Используем `sh -c`, чтобы объединить всё в одну shell-команду⁡
+
+    command: > 
+        sh -c "
+          echo 'Ожидание PostgreSQL...' &&
+          while ! nc -z db 5432; do sleep 1; done &&
+          echo 'База готова. Запускаем инициализацию.' &&
+          python init_db.py &&
+          uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80" # ⁡⁢⁣⁣3000 на хосте --> 80 в контейнере (где NGINX слушает)⁡
+
+volumes:
+  db_data:
