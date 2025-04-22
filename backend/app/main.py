@@ -69,3 +69,17 @@ def apply(application: schemas.ApplicationCreate, db: Session = Depends(get_db))
 @app.get("/api/v1/applications", response_model=list[schemas.ApplicationOut], tags=["Заявки"])
 def read_applications(db: Session = Depends(get_db)):
     return db.query(models.Application).all()
+
+# ---------- РАБОТОДАТЕЛИ: обновление статуса ----------
+
+# Обновление статуса заявки работодателем.
+# ⁡⁢⁣⁣Принимает объект {"status": "approved" | "rejected"}⁡
+@app.patch("/api/v1/applications/{app_id}/status", response_model=schemas.ApplicationOut, tags=["Работодатели"])
+def update_application_status(app_id: int, status: schemas.ApplicationStatusUpdate, db: Session = Depends(get_db)):
+    application = db.get(models.Application, app_id)
+    if not application:
+        raise HTTPException(status_code=404, detail="Заявка не найдена")
+    application.status = status.status
+    db.commit()
+    db.refresh(application)
+    return application
