@@ -21,3 +21,11 @@ class ApplicationOut(ApplicationCreate):
     applied_at: datetime
     class Config:
         from_attributes = True
+
+class ApplicationStatusUpdate(BaseModel):
+    status: str
+
+    class Config:
+        schema_extra = {
+            "example": {"status": "approved"}
+        }

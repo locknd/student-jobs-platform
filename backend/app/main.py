@@ -13,6 +13,7 @@ app = FastAPI(
     openapi_tags=[
         {"name": "Вакансии", "description": "Операции с вакансиями"},
         {"name": "Заявки", "description": "Операции с заявками"},
+        {"name": "Работодатели", "description": "Управление статусами заявок"},
     ]
 )
 
