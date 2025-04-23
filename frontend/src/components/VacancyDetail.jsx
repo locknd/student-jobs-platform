@@ -16,7 +16,7 @@ function VacancyDetail() {
   useEffect(() => {
     setLoading(true);           // ⁡⁢⁣⁣Отмечаем начало загрузки⁡
     setError(null);             // ⁡⁢⁣⁣Сбрасываем предыдущую ошибку⁡
-    fetch(`http://localhost:8000/api/v1/vacancies/${id}`) // ⁡⁢⁣⁣Запрос к API за детальной информацией⁡
+    fetch(`/api/v1/vacancies/${id}`) // ⁡⁢⁣⁣Запрос к API за детальной информацией⁡
       .then(res => {
         if (!res.ok) throw new Error('Вакансия не найдена');
         return res.json();      // ⁡⁢⁣⁣Преобразуем ответ в JSON⁡
@@ -29,7 +29,7 @@ function VacancyDetail() {
   // ⁡⁢⁣⁣Обработчик подачи заявки⁡
   const handleApply = () => {
     setError(null);                                    // ⁡⁢⁣⁣Сбрасываем ошибку перед новым запросом⁡
-    fetch('http://localhost:8000/api/v1/applications', {
+    fetch('/api/v1/applications', {
       method: 'POST',                                  // ⁡⁢⁣⁣Метод POST для создания заявки⁡
       headers: { 'Content-Type': 'application/json' }, // ⁡⁢⁣⁣Указываем, что тело запроса JSON⁡
       body: JSON.stringify({                           // ⁡⁢⁣⁣Тело: user_id и vacancy_id⁡

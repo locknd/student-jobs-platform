@@ -45,6 +45,26 @@ services:
       - backend
     ports:
       - "3000:80" # ⁡⁢⁣⁣3000 на хосте --> 80 в контейнере (где NGINX слушает)⁡
+  
+    # ⁡⁢⁣⁣новый сервис для разработки frontend⁡
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: react_frontend_dev
+    # ⁡⁢⁣⁣монтируем код, чтобы видеть правки сразу⁡
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      # ⁡⁢⁣⁣CRA внутри контейнера не будет пытаться открыть браузер⁡
+      - BROWSER=none
+      # ⁡⁢⁣⁣опрашиваем файлы, иначе watch в Docker “не увидит” новые файлы⁡
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
 
 volumes:
   db_data:

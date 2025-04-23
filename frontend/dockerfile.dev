@@ -1,0 +1,18 @@
+# stage: development for React
+FROM node:23-slim
+
+# ⁡⁢⁣⁣рабочая папка внутри контейнера⁡
+WORKDIR /app
+
+# ⁡⁢⁣⁣копируем только манифесты и ставим зависимости⁡
+COPY package*.json ./
+RUN npm install
+
+# ⁡⁢⁣⁣пробрасываем исходники внутрь (чтобы правки сразу отражались)⁡
+VOLUME ["/app/node_modules"]
+
+# ⁡⁢⁣⁣прокидываем порт CRA-dev-server⁡
+EXPOSE 3000
+
+# ⁡⁢⁣⁣запускаем команду разработки⁡
+CMD ["npm", "start"]

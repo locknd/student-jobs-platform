@@ -9,7 +9,7 @@ function EmployerDashboard() {
 
   // ⁡⁢⁣⁣Загрузка всех заявок при монтировании компонента⁡
   useEffect(() => {
-    fetch('http://localhost:8000/api/v1/applications') // ⁡⁢⁣⁣Запрос к API для получения заявок⁡
+    fetch('/api/v1/applications') // ⁡⁢⁣⁣Запрос к API для получения заявок⁡
       .then(res => {
         if (!res.ok) throw new Error('Не удалось загрузить заявки');
         return res.json();
@@ -21,7 +21,7 @@ function EmployerDashboard() {
   // ⁡⁢⁣⁣Функция для обновления статуса конкретной заявки⁡
   const updateStatus = (appId, newStatus) => {
     setError(null); // ⁡⁢⁣⁣Сбрасываем предыдущую ошибку⁡
-    fetch(`http://localhost:8000/api/v1/applications/${appId}/status`, {
+    fetch(`/api/v1/applications/${appId}/status`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus }) // ⁡⁢⁣⁣Передаем новый статус⁡

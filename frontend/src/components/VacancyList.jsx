@@ -8,7 +8,7 @@ function VacancyList() {
 
   // ⁡⁢⁣⁣Хук эффект: загрузка вакансий при монтировании компонента⁡
   useEffect(() => {
-    fetch('http://localhost:8000/api/v1/vacancies')  // ⁡⁢⁣⁣Запрос к API бэкенда⁡
+    fetch('/api/v1/vacancies')  // ⁡⁢⁣⁣Запрос к API бэкенда⁡
       .then(res => res.json())                       // ⁡⁢⁣⁣Парсинг JSON⁡
       .then(data => setVacancies(data));             // ⁡⁢⁣⁣Сохранение данных в состояние⁡
   }, []);
