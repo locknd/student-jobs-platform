@@ -24,7 +24,7 @@ function VacancyList() {
           // ⁡⁢⁣⁣Колонка: на md — 6, на lg — 4 ширина⁡
           <div key={vacancy.id} className="col-12 col-md-6 col-lg-4 mb-3">
             {/* ⁡⁢⁣⁣Ссылка-обёртка, стилизованная как Bootstrap-карта⁡ */}
-            <Link to={`/vacancies/${vacancy.id}`} className="card h-100 text-decoration-none">
+            <Link to={`/vacancies/${vacancy.id}`} className="card h-100 text-decoration-none text-dark">
               <div className="card-body">
                 {/* ⁡⁢⁣⁣Название вакансии⁡ */}
                 <h5 className="card-title">{vacancy.title}</h5>

@@ -1,28 +1,61 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import VacancyList from './components/VacancyList';
 import VacancyDetail from './components/VacancyDetail';
 import EmployerDashboard from './components/EmployerDashboard';
+import CreateVacancyForm from './components/CreateVacancyForm';
 
 /**
-⁡⁢⁣⁣ Используем export default для:
-  - Упрощённого импорта без фигурных скобок
-  - Совместимости с большинством сборщиков и шаблонов React
-  - Возможности называть импортированный модуль произвольно при необходимости⁡
+ * ⁡⁢⁣⁣ Используем export default для:
+ *  - Упрощённого импорта без фигурных скобок
+ *  - Совместимости с большинством сборщиков и шаблонов React
+ *  - Возможности именовать импортируемый компонент произвольно
  **/
 export default function App() {
   return (
     // ⁡⁢⁣⁣Router-обёртка для поддержки SPA-маршрутов⁡
     <Router>
+      {/* Навигационная панель приложения */}
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
+          {/* Логотип/бренд-линк, возвращающий на главную */}
+          <Link to="/" className="navbar-brand">
+            Student Jobs
+          </Link>
+          {/* Кнопка-тогглер для мобильного меню */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          {/* Ссылки меню */}
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item"><Link to="/" className="nav-link">Вакансии</Link></li>
+              <li className="nav-item">
+                <Link to="/vacancies/employer/dashboard" className="nav-link">Работодатель</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Определение маршрутов */}
       <Routes>
-        {/* ⁡⁢⁣⁣Главная страница со списком вакансий⁡ */}
+        {/* Главная страница: список вакансий */}
         <Route path="/" element={<VacancyList />} />
-
-        {/* ⁡⁢⁣⁣Страница деталей вакансии по ID⁡ */}
+        {/* Детали вакансии по ID */}
         <Route path="/vacancies/:id" element={<VacancyDetail />} />
-
-        {/* ⁡⁢⁣⁣Панель работодателя для управления заявками⁡ */}
-        <Route path="/dashboard" element={<EmployerDashboard />} />
+        {/* Форма создания новой вакансии (для работодателя) */}
+        <Route path="/vacancies/employer/create_new" element={<CreateVacancyForm />} />
+        {/* Панель работодателя: просмотр и управление заявками */}
+        <Route path="/vacancies/employer/dashboard" element={<EmployerDashboard />} />
       </Routes>
     </Router>
   );

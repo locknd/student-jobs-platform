@@ -14,5 +14,11 @@ VOLUME ["/app/node_modules"]
 # ⁡⁢⁣⁣прокидываем порт CRA-dev-server⁡
 EXPOSE 3000
 
+# ⁡⁢⁣⁣ENV: чтобы CRA слушал на 0.0.0.0, а не на localhost (иначе из Docker-сети недоступно)⁡
+ENV HOST=0.0.0.0
+
+# ⁡⁢⁣⁡⁢⁣⁣ENV: включаем polling-mode для отслеживания изменений файлов внутри контейнера⁡
+ENV CHOKIDAR_USEPOLLING=true
+
 # ⁡⁢⁣⁣запускаем команду разработки⁡
 CMD ["npm", "start"]

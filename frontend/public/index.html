@@ -1,66 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    ⁡⁢⁣⁣<!-- Метаданные страницы -->⁡
-    <meta charset="UTF-8" />
-    ⁡⁢⁣⁣<!-- Адаптивная вёрстка: масштабирование для разных устройств -->⁡
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Вакансии для студентов</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Jobs</title>
+  <!-- Подключение Bootstrap 5 CSS через CDN -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha512-PLjRm+O1ef+X6sX+NMeVO0jGyVjnYyY6+9fqOtEh3VOc4VBn1I0JSIbN1fN0X2UTujKzNfKmTwkFvHOaXHpcEw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <!-- Точка монтирования React-приложения -->
+  <div id="root"></div>
 
-    ⁡⁢⁣⁣<!-- Подключение Bootstrap 5 CSS через CDN для быстрой стилизации -->⁡
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha512-PLjRm+O1ef+X6sX+NMeVO0jGyVjnYyY6+9fqOtEh3VOc4VBn1I0JSIbN1fN0X2UTujKzNfKmTwkFvHOaXHpcEw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    ⁡⁢⁣⁣<!-- Верхний навбар приложения -->⁡
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          ⁡⁢⁣⁣<!-- Логотип / название сайта, переход на главную -->⁡
-          <a class="navbar-brand" href="#">Student Jobs</a>
-          ⁡⁢⁣⁣<!-- Кнопка для разворачивания меню на мобильных устройствах -->⁡
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          ⁡⁢⁣⁣<!-- Ссылки навигации -->⁡
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                ⁡⁢⁣⁣<!-- Ссылка на список вакансий -->⁡
-                <a class="nav-link" href="/">Вакансии</a>
-              </li>
-              <li class="nav-item">
-                ⁡⁢⁣⁣<!-- Ссылка на панель работодателя -->⁡
-                <a class="nav-link" href="/dashboard">Работодатель</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    ⁡⁢⁣⁣<!-- Точка монтирования React-приложения -->⁡
-    <div id="root"></div>
-
-    ⁡⁢⁣⁣<!-- Подключение Bootstrap JS (Popper + Bootstrap) для работы интерактивных компонентов -->⁡
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
-      integrity="sha512-ENjdO4Dr2bkBIFxQpeoUCRX3prZ7yoaU2+2MmXI3o4bhnVWlr7BXtMet3URy9Bv1WTRiMf1WHzreVxIo3M+Lkg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-  </body>
+  <!-- Подключение Bootstrap JS (Popper + Bootstrap) -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+    integrity="sha512-ENjdO4Dr2bkBIFxQpeoUCRX3prZ7yoaU2+2MmXI3o4bhnVWlr7BXtMet3URy9Bv1WTRiMf1WHzreVxIo3M+Lkg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+</body>
 </html>

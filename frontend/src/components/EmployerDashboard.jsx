@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // ⁡⁢⁣⁣Компонент панели работодателя: просмотр и обновление статуса заявок⁡
 function EmployerDashboard() {
@@ -41,8 +42,8 @@ function EmployerDashboard() {
 
   return (
     <div className="container my-4">
-      <h2 className="mb-4">Панель работодателя</h2>
 
+      <h2 className="mb-4">Панель работодателя</h2>
       {/* ⁡⁢⁣⁣Отображение ошибки, если она есть⁡ */}
       {error && (
         <div className="alert alert-danger" role="alert">
@@ -50,13 +51,16 @@ function EmployerDashboard() {
         </div>
       )}
 
+      {/* ⁡⁢⁣⁣Кнопка для создания новой вакансии⁡ */}
+      <Link to="/vacancies/employer/create_new" className="btn btn-primary mb-3">+ Создать вакансию</Link>
+
       {/* ⁡⁢⁣⁣Таблица заявок⁡ */}
-      <table className="table table-striped">
-        <thead>
+      <table className="table table-bordered table-striped">
+        <thead className="table-light">
           <tr>
-            <th>ID заявки</th>
-            <th>ID студента</th>
-            <th>ID вакансии</th>
+            <th>Номер заявки</th>
+            <th>Студент</th>
+            <th>Вакансия</th>
             <th>Статус</th>
             <th>Действия</th>
           </tr>
@@ -67,21 +71,25 @@ function EmployerDashboard() {
               <td>{app.id}</td>
               <td>{app.user_id}</td>
               <td>{app.vacancy_id}</td>
-              <td>{app.status}</td>
+              <td>
+                <span className={`badge ${
+                  app.status === 'approved' ? 'bg-success' :
+                  app.status === 'rejected' ? 'bg-danger' :
+                  'bg-secondary'
+                }`}>
+                  {app.status}
+                </span>
+              </td>
               <td>
                 {/* ⁡⁢⁣⁣Кнопки для смены статуса⁡ */}
                 <button
                   className="btn btn-sm btn-success me-2"
                   onClick={() => updateStatus(app.id, 'approved')}
-                >
-                  ✔️ Принять
-                </button>
+                >✔️ Принять</button>
                 <button
                   className="btn btn-sm btn-danger"
                   onClick={() => updateStatus(app.id, 'rejected')}
-                >
-                  ✖️ Отклонить
-                </button>
+                >✖️ Отклонить</button>
               </td>
             </tr>
           ))}

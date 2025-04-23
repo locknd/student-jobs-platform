@@ -50,7 +50,7 @@ services:
   frontend-dev:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: dockerfile.dev
     container_name: react_frontend_dev
     # ⁡⁢⁣⁣монтируем код, чтобы видеть правки сразу⁡
     volumes:
@@ -63,8 +63,11 @@ services:
       - BROWSER=none
       # ⁡⁢⁣⁣опрашиваем файлы, иначе watch в Docker “не увидит” новые файлы⁡
       - CHOKIDAR_USEPOLLING=true
+      - HOST=0.0.0.0   # ⁡⁢⁣⁣слушать на всех интерфейсах⁡
+      - WDS_SOCKET_PORT=3000 
     depends_on:
       - backend
+    command: npm start
 
 volumes:
   db_data:
