@@ -112,23 +112,6 @@ def apply(application: schemas.ApplicationCreate, db: Session = Depends(get_db))
 def read_applications(db: Session = Depends(get_db)):
     return db.query(models.Application).all()
 
-@app.get(
-    "/api/v1/applications/{app_id}",
-    response_model=schemas.ApplicationOut,
-    tags=["Заявки"],
-    summary="Получить заявку по ID",
-    description="Возвращает информацию о заявке, включая текущий статус. Если не найдена — 404."
-)
-def read_application(
-    app_id: int,                   # ⁡⁢⁣⁣ID заявки⁡
-    db: Session = Depends(get_db)
-):
-    application = db.get(models.Application, app_id)
-    if not application:
-        raise HTTPException(status_code=404, detail="Заявка не найдена")
-    return application
-
-
 # ⁡⁢⁣⁣---------- РАБОТОДАТЕЛИ: обновление статуса ----------⁡
 
 @app.patch(
