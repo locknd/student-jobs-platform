@@ -16,12 +16,12 @@ export default function App() {
   return (
     // ⁡⁢⁣⁣Router-обёртка для поддержки SPA-маршрутов⁡
     <Router>
-      {/* Навигационная панель приложения */}
+      {/* ⁡⁢⁣⁣Навигационная панель приложения⁡ */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          {/* Логотип/бренд-линк, возвращающий на главную */}
+          {/* ⁡⁢⁣⁣Логотип, возвращающий на главную⁡ */}
           <Link className="navbar-brand" to="/">Student Jobs</Link>
-          {/* Кнопка-тогглер для мобильного меню */}
+          {/* ⁡⁢⁣⁣Кнопка-тогглер для мобильного меню⁡ */}
           <button
             className="navbar-toggler"
             type="button"
@@ -33,7 +33,7 @@ export default function App() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          {/* Ссылки меню */}
+          {/* ⁡⁢⁣⁣Ссылки меню⁡ */}
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
               <li className="nav-item"><Link to="/vacancies" className="nav-link">Вакансии</Link></li>
@@ -45,17 +45,17 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Определение маршрутов */}
+      {/* ⁡⁢⁣⁣Определение маршрутов⁡ */}
       <Routes>
-        {/* Главная страница: описание сервиса */}
+        {/* ⁡⁢⁣⁣Главная страница: описание сервиса⁡ */}
         <Route path="/" element={<Home />} />
-        {/* Список вакансий */}
+        {/* ⁡⁢⁣⁣Список вакансий⁡ */}
         <Route path="/vacancies" element={<VacancyList />} />
-        {/* Детали вакансии по ID */}
+        {/* ⁡⁢⁣⁣Детали вакансии по ID⁡ */}
         <Route path="/vacancies/:id" element={<VacancyDetail />} />
-        {/* Форма создания новой вакансии (для работодателя) */}
+        {/* ⁡⁢⁣⁣Форма создания новой вакансии (для работодателя)⁡ */}
         <Route path="/vacancies/employer/create_new" element={<CreateVacancyForm />} />
-        {/* Панель работодателя: просмотр и управление заявками */}
+        {/* ⁡⁢⁣⁣Панель работодателя: просмотр и управление заявками⁡ */}
         <Route path="/vacancies/employer/dashboard" element={<EmployerDashboard />} />
       </Routes>
     </Router>
