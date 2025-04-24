@@ -1,22 +1,7 @@
 from fastapi.testclient import TestClient  # ⁡⁢⁣⁣импорт клиента для тестирования FastAPI⁡
-from app.main import app
-# from app import models # модели для подготовки данных
-# from app.database import SessionLocal  
+from app.main import app  
 
 client = TestClient(app)  # ⁡⁢⁣⁣создаём клиент для отправки HTTP-запросов к API⁡
-
-# def setup_function():
-#     """
-#     Перед каждым тестом очищаем таблицы, 
-#     используемые в ключевом сценарии:
-#       - Application
-#       - Vacancy
-#     """
-#     db = SessionLocal()
-#     db.query(models.Application).delete()
-#     db.query(models.Vacancy).delete()
-#     db.commit()
-#     db.close()
 
 
 # ⁡⁢⁣⁣1. Проверка пустого списка вакансий — ожидаем [], статус 200⁡

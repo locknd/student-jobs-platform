@@ -5,7 +5,6 @@ import VacancyDetail from './components/VacancyDetail';
 import EmployerDashboard from './components/EmployerDashboard';
 import CreateVacancyForm from './components/CreateVacancyForm';
 import Home from './components/HomePage';
-
 /**
  * ⁡⁢⁣⁣ Используем export default для:
  *  - Упрощённого импорта без фигурных скобок
@@ -37,9 +36,7 @@ export default function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
               <li className="nav-item"><Link to="/vacancies" className="nav-link">Вакансии</Link></li>
-              <li className="nav-item">
-                <Link to="/vacancies/employer/dashboard" className="nav-link">Работодатель</Link>
-              </li>
+              <li className="nav-item"><Link to="/vacancies/employer/dashboard" className="nav-link">Работодатель</Link></li>
             </ul>
           </div>
         </div>
