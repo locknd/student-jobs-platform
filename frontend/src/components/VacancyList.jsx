@@ -17,7 +17,7 @@ function VacancyList() {
     // ⁡⁢⁣⁣Bootstrap контейнер для адаптивного центра контента⁡
     <div className="container my-4">
       {/* ⁡⁢⁣⁣Заголовок страницы⁡ */}
-      <h2 className="mb-4">Доступные вакансии</h2>
+      <h1 className="mb-4">Доступные вакансии</h1>
       {/* ⁡⁢⁣⁣Bootstrap сетка: row для строки карточек⁡ */}
       <div className="row">
         {vacancies.map(vacancy => (
@@ -27,7 +27,7 @@ function VacancyList() {
             <Link to={`/vacancies/${vacancy.id}`} className="card h-100 text-decoration-none text-dark">
               <div className="card-body">
                 {/* ⁡⁢⁣⁣Название вакансии⁡ */}
-                <h5 className="card-title">{vacancy.title}</h5>
+                <h4 className="card-title">{vacancy.title}</h4>
                 {/* ⁡⁢⁣⁣Описание вакансии (обрезанное)⁡ */}
                 <p className="card-text text-truncate">{vacancy.description}</p>
               </div>

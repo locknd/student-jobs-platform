@@ -17,10 +17,10 @@ export default function App() {
     <Router>
       {/* Навигационная панель приложения */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
+        <div className="container-fluid">
           {/* Логотип/бренд-линк, возвращающий на главную */}
           <Link to="/" className="navbar-brand">
-            Student Jobs
+           Student Jobs
           </Link>
           {/* Кнопка-тогглер для мобильного меню */}
           <button

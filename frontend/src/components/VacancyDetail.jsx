@@ -80,21 +80,29 @@ function VacancyDetail() {
   return (
     <div className="container my-4">
       {/*⁡⁢⁣⁣ Заголовок вакансии⁡ */}
-      <h2 className="mb-3">{vacancy.title}</h2>
-      {/* ⁡⁢⁣⁣Описание вакансии⁡ */}
-      <p className="mb-4">{vacancy.description}</p>
-      {/* ⁡⁢⁣⁣Блок с кнопкой подачи заявки или сообщением об успешной отправке ⁡*/}
-      {!submitted ? (
-        <>
-          <button className="btn btn-primary" onClick={handleApply}>
-            Подать заявку
-          </button>
-        </>
-      ) : (
-        <div className="alert alert-success" role="alert">
-          ✅ Заявка отправлена!
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="card mb-4 h-100">
+            <div className="card-body d-flex flex-column">
+              <h4 className="card-title">{vacancy.title}</h4>
+              {/* ⁡⁢⁣⁣Описание вакансии⁡ */}
+              <p className="card-text flex-grow-1">{vacancy.description}</p>
+              {/* ⁡⁢⁣⁣Блок с кнопкой подачи заявки или сообщением об успешной отправке ⁡*/}
+              {!submitted ? (
+                <>
+                  <button className="btn btn-primary mt-auto" onClick={handleApply}>
+                    Подать заявку
+                  </button>
+                </>
+              ) : (
+                <div className="alert alert-success" role="alert">
+                  ✅ Заявка отправлена!
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

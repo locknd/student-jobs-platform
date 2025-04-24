@@ -43,7 +43,7 @@ function EmployerDashboard() {
   return (
     <div className="container my-4">
 
-      <h2 className="mb-4">Панель работодателя</h2>
+      <h1 className="mb-4">Панель работодателя</h1>
       {/* ⁡⁢⁣⁣Отображение ошибки, если она есть⁡ */}
       {error && (
         <div className="alert alert-danger" role="alert">
@@ -55,46 +55,48 @@ function EmployerDashboard() {
       <Link to="/vacancies/employer/create_new" className="btn btn-primary mb-3">+ Создать вакансию</Link>
 
       {/* ⁡⁢⁣⁣Таблица заявок⁡ */}
-      <table className="table table-bordered table-striped">
-        <thead className="table-light">
-          <tr>
-            <th>Номер заявки</th>
-            <th>Студент</th>
-            <th>Вакансия</th>
-            <th>Статус</th>
-            <th>Действия</th>
-          </tr>
-        </thead>
-        <tbody>
-          {applications.map(app => (
-            <tr key={app.id}>
-              <td>{app.id}</td>
-              <td>{app.user_id}</td>
-              <td>{app.vacancy_id}</td>
-              <td>
-                <span className={`badge ${
-                  app.status === 'approved' ? 'bg-success' :
-                  app.status === 'rejected' ? 'bg-danger' :
-                  'bg-secondary'
-                }`}>
-                  {app.status}
-                </span>
-              </td>
-              <td>
-                {/* ⁡⁢⁣⁣Кнопки для смены статуса⁡ */}
-                <button
-                  className="btn btn-sm btn-success me-2"
-                  onClick={() => updateStatus(app.id, 'approved')}
-                >✔️ Принять</button>
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={() => updateStatus(app.id, 'rejected')}
-                >✖️ Отклонить</button>
-              </td>
+      <div className="table-responsive">
+        <table className="table table-bordered table-striped">
+          <thead className="table-light">
+            <tr>
+              <th>Номер заявки</th>
+              <th>Студент</th>
+              <th>Вакансия</th>
+              <th>Статус</th>
+              <th>Действия</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {applications.map(app => (
+              <tr key={app.id}>
+                <td>{app.id}</td>
+                <td>{app.user_id}</td>
+                <td>{app.vacancy_id}</td>
+                <td>
+                  <span className={`badge ${
+                    app.status === 'approved' ? 'bg-success' :
+                    app.status === 'rejected' ? 'bg-danger' :
+                    'bg-secondary'
+                  }`}>
+                    {app.status}
+                  </span>
+                </td>
+                <td>
+                  {/* ⁡⁢⁣⁣Кнопки для смены статуса⁡ */}
+                  <button
+                    className="btn btn-sm btn-success me-2"
+                    onClick={() => updateStatus(app.id, 'approved')}
+                  >✔️ Принять</button>
+                  <button
+                    className="btn btn-sm btn-danger"
+                    onClick={() => updateStatus(app.id, 'rejected')}
+                  >✖️ Отклонить</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

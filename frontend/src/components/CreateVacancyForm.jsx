@@ -29,7 +29,7 @@ export default function CreateVacancyForm() {
 
   return (
     <div className="container my-4">
-      <h2 className="mb-4">Создать новую вакансию</h2>
+      <h1 className="mb-4">Создать новую вакансию</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Заголовок</label>
@@ -53,8 +53,10 @@ export default function CreateVacancyForm() {
           />
         </div>
 
-        <button type="submit" className="btn btn-success">
-          Сохранить
+        <button type="submit" className="btn btn-success">Сохранить</button>
+        <button type="button" className="btn btn-secondary ms-2"onClick={() => navigate(-1)}
+        >
+          Отменить
         </button>
       </form>
     </div>
