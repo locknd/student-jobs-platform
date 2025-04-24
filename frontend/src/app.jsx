@@ -4,6 +4,7 @@ import VacancyList from './components/VacancyList';
 import VacancyDetail from './components/VacancyDetail';
 import EmployerDashboard from './components/EmployerDashboard';
 import CreateVacancyForm from './components/CreateVacancyForm';
+import Home from './components/HomePage';
 
 /**
  * ⁡⁢⁣⁣ Используем export default для:
@@ -19,9 +20,7 @@ export default function App() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           {/* Логотип/бренд-линк, возвращающий на главную */}
-          <Link to="/" className="navbar-brand">
-           Student Jobs
-          </Link>
+          <Link className="navbar-brand" to="/">Student Jobs</Link>
           {/* Кнопка-тогглер для мобильного меню */}
           <button
             className="navbar-toggler"
@@ -37,7 +36,7 @@ export default function App() {
           {/* Ссылки меню */}
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
-              <li className="nav-item"><Link to="/" className="nav-link">Вакансии</Link></li>
+              <li className="nav-item"><Link to="/vacancies" className="nav-link">Вакансии</Link></li>
               <li className="nav-item">
                 <Link to="/vacancies/employer/dashboard" className="nav-link">Работодатель</Link>
               </li>
@@ -48,8 +47,10 @@ export default function App() {
 
       {/* Определение маршрутов */}
       <Routes>
-        {/* Главная страница: список вакансий */}
-        <Route path="/" element={<VacancyList />} />
+        {/* Главная страница: описание сервиса */}
+        <Route path="/" element={<Home />} />
+        {/* Список вакансий */}
+        <Route path="/vacancies" element={<VacancyList />} />
         {/* Детали вакансии по ID */}
         <Route path="/vacancies/:id" element={<VacancyDetail />} />
         {/* Форма создания новой вакансии (для работодателя) */}
