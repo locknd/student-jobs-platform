@@ -14,7 +14,17 @@ app = FastAPI(
         {"name": "Вакансии", "description": "Операции с вакансиями"},
         {"name": "Заявки", "description": "Операции с заявками"},
         {"name": "Работодатели", "description": "Управление статусами заявок"},
-    ]
+    ],
+    description="""
+# Pydantic-схемы
+
+Ниже перечислены все входные и выходные модели, используемые в API:
+- **VacancyCreate** — создание вакансии
+- **VacancyOut** — вывод вакансии
+- **ApplicationCreate** — создание заявки
+- **ApplicationOut** — вывод заявки
+- **ApplicationStatusUpdate** — обновление статуса заявки
+"""
 )
 
 # ⁡⁢⁣⁣Добавление CORS middleware для доступа с frontend (React)⁡
