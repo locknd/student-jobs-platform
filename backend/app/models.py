@@ -34,9 +34,9 @@ class Vacancy(Base):
     title = Column(String, nullable=False)  # ⁡⁢⁣⁣заголовок вакансии⁡
     description = Column(Text, nullable=False)  # ⁡⁢⁣⁣описание вакансии⁡
     created_by = Column(Integer, ForeignKey("students.id"), nullable=False)  # ⁡⁢⁣⁣студент, создавший вакансию⁡
-    department_id = Column(Integer, ForeignKey("departments.id"), nullable=True)  # ⁡⁢⁣⁣FK на отдел⁡
-    location_id = Column(Integer, ForeignKey("locations.id"), nullable=True)  # ⁡⁢⁣⁣FK на локацию⁡
-    employer_id = Column(Integer, ForeignKey("employers.id"), nullable=True)  # ⁡⁢⁣⁣FK на работодателя⁡
+    department_id = Column(Integer, ForeignKey("departments.id"), nullable=True, default=1)  # ⁡⁢⁣⁣FK на отдел⁡
+    location_id = Column(Integer, ForeignKey("locations.id"), nullable=True, default=1)  # ⁡⁢⁣⁣FK на локацию⁡
+    employer_id = Column(Integer, ForeignKey("employers.id"), nullable=True, default=1)  # ⁡⁢⁣⁣FK на работодателя⁡
 
     # ⁡⁢⁣⁣связи для получения связанных объектов⁡
     employer = relationship("Employer", back_populates="vacancies")  # ⁡⁢⁣⁣работодатель вакансии⁡
