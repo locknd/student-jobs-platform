@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="container-fluid px-0">
-      {/* Hero во весь экран */}
+      {/* ⁡⁢⁣⁣Hero во весь экран ⁡*/}
       <div
         className="bg-light d-flex align-items-center justify-content-center"
         style={{ minHeight: '100vh' }}

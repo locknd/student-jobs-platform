@@ -10,7 +10,7 @@ export default function CreateVacancyForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = { title, description, created_by: 1 /* временный user_id */ };
+    const payload = { title, description, created_by: 1 /* ⁡⁢⁣⁣временный user_id ⁡*/ };
 
     const res = await fetch('/api/v1/vacancies', {
       method: 'POST',
@@ -20,7 +20,7 @@ export default function CreateVacancyForm() {
 
     if (res.ok) {
       const vacancy = await res.json();
-      // После успешного создания — переходим на страницу списка или деталей
+      // ⁡⁢⁣⁣После успешного создания — переходим на страницу списка или деталей⁡
       navigate(`/vacancies/${vacancy.id}`);
     } else {
       alert('Ошибка при создании вакансии');
