@@ -64,7 +64,16 @@ services:
       # ⁡⁢⁣⁣опрашиваем файлы, иначе watch в Docker “не увидит” новые файлы⁡
       - CHOKIDAR_USEPOLLING=true
       - HOST=0.0.0.0   # ⁡⁢⁣⁣слушать на всех интерфейсах⁡
-      - WDS_SOCKET_PORT=3000 
+      - WDS_SOCKET_PORT=3000
+      # ⁡⁢⁣⁣Указываем WDS, куда слать WebSocket-уведомления об изменениях файлов.⁡
+      # ⁡⁢⁣⁣Используем host.docker.internal, чтобы путь совпадал с extra_hosts.⁡
+      - WDS_SOCKET_HOST=localhost
+
+    # ⁡⁢⁣⁣Помогаем контейнеру резолвить DNS-имя host.docker.internal⁡ ⁡⁢⁣⁣на IP хоста.⁡
+    # ⁡⁢⁣⁣Это нужно, чтобы Webpack Dev Server (WDS) мог установить WebSocket-соединение⁡
+    # ⁡⁢⁣⁣с браузером на машине, где запущен Docker.  ⁡
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - backend
     command: npm start
