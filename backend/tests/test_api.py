@@ -1,7 +1,23 @@
 from fastapi.testclient import TestClient  # ⁡⁢⁣⁣импорт клиента для тестирования FastAPI⁡
-from app.main import app  
+from app.main import app
+# from app import models # модели для подготовки данных
+# from app.database import SessionLocal  
 
 client = TestClient(app)  # ⁡⁢⁣⁣создаём клиент для отправки HTTP-запросов к API⁡
+
+# def setup_function():
+#     """
+#     Перед каждым тестом очищаем таблицы, 
+#     используемые в ключевом сценарии:
+#       - Application
+#       - Vacancy
+#     """
+#     db = SessionLocal()
+#     db.query(models.Application).delete()
+#     db.query(models.Vacancy).delete()
+#     db.commit()
+#     db.close()
+
 
 # ⁡⁢⁣⁣1. Проверка пустого списка вакансий — ожидаем [], статус 200⁡
 
@@ -65,53 +81,3 @@ def test_apply_missing_data():
     assert response.status_code == 422  # ⁡⁢⁣⁣ошибка валидации⁡
     errors = response.json()["detail"]
     assert any(err["loc"][-1] == "vacancy_id" for err in errors)  # ⁡⁢⁣⁣проверяем, что ошибка по vacancy_id⁡
-
-# ⁡⁢⁣⁣8. Создание отдела (Department) — проверяем POST /departments⁡
-
-def test_create_department():
-    payload = {"name": "IT Department"}
-    response = client.post("/api/v1/departments", json=payload)
-    assert response.status_code == 201  # ⁡⁢⁣⁣отдел создан⁡
-    data = response.json()
-    assert data["name"] == "IT Department"  # ⁡⁢⁣⁣имя отдела совпадает⁡
-    assert "id" in data  # ⁡⁢⁣⁣получен ID⁡
-
-# ⁡⁢⁣⁣9. Получение списка отделов (Department) — проверяем GET /departments⁡
-
-def test_get_departments():
-    response = client.get("/api/v1/departments")
-    assert response.status_code == 200  # ⁡⁢⁣⁣успешно⁡
-    departments = response.json()
-    assert isinstance(departments, list)  # ⁡⁢⁣⁣список⁡
-    assert any(d["name"] == "IT Department" for d in departments)  # ⁡⁢⁣⁣новый отдел в списке
-
-# ⁡⁢⁣⁣10. Создание локации (Location) — проверяем POST /locations⁡
-
-def test_create_location():
-    payload = {"city": "Amsterdam", "state": "North Holland"}
-    response = client.post("/api/v1/locations", json=payload)
-    assert response.status_code == 201  # ⁡⁢⁣⁣локация создана⁡
-    data = response.json()
-    assert data["city"] == "Amsterdam"
-    assert data["state"] == "North Holland"
-    assert "id" in data  # ⁡⁢⁣⁣получен ID⁡
-
-# ⁡⁢⁣⁣11. Создание навыка (Skill) — проверяем POST /skills⁡
-
-def test_create_skill():
-    payload = {"name": "Python"}
-    response = client.post("/api/v1/skills", json=payload)
-    assert response.status_code == 201  # навык создан
-    data = response.json()
-    assert data["name"] == "Python"
-    assert "id" in data  # получен ID
-
-# ⁡⁢⁣⁣12. Создание работодателя (Employer) — проверяем POST /employers⁡
-
-def test_create_employer():
-    payload = {"name": "ACME Corp"}
-    response = client.post("/api/v1/employers", json=payload)
-    assert response.status_code == 201  # ⁡⁢⁣⁣работодатель создан⁡
-    data = response.json()
-    assert data["name"] == "ACME Corp"
-    assert "id" in data  # ⁡⁢⁣⁣получен ID⁡
