@@ -16,14 +16,20 @@ app = FastAPI(
         {"name": "Работодатели", "description": "Управление статусами заявок"},
     ],
     description="""
+---
 # Pydantic-схемы
-
+---
 Ниже перечислены все входные и выходные модели, используемые в API:
 - **VacancyCreate** — создание вакансии
 - **VacancyOut** — вывод вакансии
 - **ApplicationCreate** — создание заявки
 - **ApplicationOut** — вывод заявки
 - **ApplicationStatusUpdate** — обновление статуса заявки
+---
+#
+---
+# API-эндпоинты
+---
 """
 )
 
